@@ -1,17 +1,17 @@
 <template>
-  <a-layout-header class="header">
+  <a-layout-header class="header" style="display: flex">
     <div class="logo">甲蛙知识库</div>
     <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
       <a-menu-item key="/">
         <router-link to="/">首页</router-link>
       </a-menu-item>
-      <a-menu-item key="/admin/user" v-if="user.id">
+      <a-menu-item key="/admin/user">
         <router-link to="/admin/user">用户管理</router-link>
       </a-menu-item>
-      <a-menu-item key="/admin/ebook" v-if="user.id">
+      <a-menu-item key="/admin/ebook">
         <router-link to="/admin/ebook">电子书管理</router-link>
       </a-menu-item>
-      <a-menu-item key="/admin/category" v-if="user.id">
+      <a-menu-item key="/admin/category">
         <router-link to="/admin/category">分类管理</router-link>
       </a-menu-item>
       <a-menu-item key="/about">
@@ -20,18 +20,21 @@
       <a-menu-item key="/aliyun">
         <router-link to="/aliyun">阿里云优惠</router-link>
       </a-menu-item>
-      <!-- <a-popconfirm title="确认退出登录?" ok-text="是" cancel-text="否" @confirm="logout()">
-        <a-menu-item class="login-menu" v-if="user.id">
-          <span>退出登录</span>
-        </a-menu-item>
-      </a-popconfirm> -->
-      <a-menu-item class="login-menu" v-if="user.id">
-        <span>您好：{{ user.name }}</span>
-      </a-menu-item>
-      <a-menu-item class="login-menu" v-if="!user.id" @click="showLoginModal">
-        <span>登录</span>
-      </a-menu-item>
     </a-menu>
+
+    <div>
+      <a-popconfirm title="确认退出登录?" ok-text="是" cancel-text="否" @confirm="logout()" v-if="user.id">
+        <div class="login-menu">
+          <span>退出登录</span>
+        </div>
+      </a-popconfirm>
+      <div class="login-menu" v-if="user.id">
+        <span>您好：{{ user.name }}</span>
+      </div>
+      <div class="login-menu" v-if="!user.id" @click="showLoginModal">
+        <span>登录</span>
+      </div>
+    </div>
 
     <a-modal title="登录" v-model:open="loginModalVisible" :confirm-loading="loginModalLoading" @ok="login">
       <a-form :model="loginUser" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
