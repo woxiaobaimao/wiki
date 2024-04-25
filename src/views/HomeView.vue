@@ -27,7 +27,7 @@
         v-show="!isShowWelcome"
         item-layout="vertical"
         size="large"
-        :grid="{ gutter: 20, column: 3 }"
+        :grid="{ gutter: 20, column: 5 }"
         :data-source="ebooks"
       >
         <template #renderItem="{ item }">
