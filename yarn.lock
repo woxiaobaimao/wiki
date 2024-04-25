@@ -735,7 +735,7 @@
   optionalDependencies:
     "prettier" "^1.18.2 || ^2.0.0"
 
-"@vue/devtools-api@^6.0.0-beta.11", "@vue/devtools-api@^6.5.1":
+"@vue/devtools-api@^6.0.0-beta.11", "@vue/devtools-api@^6.5.0", "@vue/devtools-api@^6.5.1":
   "integrity" "sha512-LgPscpE3Vs0x96PzSSB4IGVSZXZBZHpfxs+ZA1d+VEPwHdOXowy/Y2CsvCAIFrf+ssVU1pD1jidj505EpUnfbA=="
   "resolved" "https://registry.npmmirror.com/@vue/devtools-api/-/devtools-api-6.6.1.tgz"
   "version" "6.6.1"
@@ -3489,6 +3489,14 @@
   "resolved" "https://registry.npmmirror.com/picomatch/-/picomatch-2.3.1.tgz"
   "version" "2.3.1"
 
+"pinia@^2.1.7":
+  "integrity" "sha512-+C2AHFtcFqjPih0zpYuvof37SFxMQ7OEG2zV9jRI12i9BOy3YQVAHwdKtyyc8pDcDyIc33WCIsZaCFWU7WWxGQ=="
+  "resolved" "https://registry.npmjs.org/pinia/-/pinia-2.1.7.tgz"
+  "version" "2.1.7"
+  dependencies:
+    "@vue/devtools-api" "^6.5.0"
+    "vue-demi" ">=0.14.5"
+
 "pkg-dir@^4.1.0":
   "integrity" "sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ=="
   "resolved" "https://registry.npmmirror.com/pkg-dir/-/pkg-dir-4.2.0.tgz"
@@ -4608,7 +4616,7 @@
     "media-typer" "0.3.0"
     "mime-types" "~2.1.24"
 
-"typescript@*", "typescript@>= 2.7", "typescript@>=2", "typescript@~4.5.5":
+"typescript@*", "typescript@>= 2.7", "typescript@>=2", "typescript@>=4.4.4", "typescript@~4.5.5":
   "integrity" "sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA=="
   "resolved" "https://registry.npmmirror.com/typescript/-/typescript-4.5.5.tgz"
   "version" "4.5.5"
@@ -4676,6 +4684,11 @@
   "resolved" "https://registry.npmmirror.com/vary/-/vary-1.1.2.tgz"
   "version" "1.1.2"
 
+"vue-demi@>=0.14.5":
+  "integrity" "sha512-EOG8KXDQNwkJILkx/gPcoL/7vH+hORoBaKgGe+6W7VFMvCYJfmF2dGbvgDroVnI8LU7/kTu8mbjRZGBU1z9NTA=="
+  "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.7.tgz"
+  "version" "0.14.7"
+
 "vue-hot-reload-api@^2.3.0":
   "integrity" "sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog=="
   "resolved" "https://registry.npmmirror.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz"
@@ -4717,7 +4730,7 @@
   dependencies:
     "is-plain-object" "3.0.1"
 
-"vue@^2 || ^3.2.13", "vue@^3.0.0", "vue@^3.2.0", "vue@^3.2.13", "vue@>=3.0.3", "vue@>=3.2.0", "vue@3.4.24":
+"vue@^2 || ^3.2.13", "vue@^2.6.14 || ^3.3.0", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.13", "vue@>=3.0.3", "vue@>=3.2.0", "vue@3.4.24":
   "integrity" "sha512-NPdx7dLGyHmKHGRRU5bMRYVE+rechR+KDU5R2tSTNG36PuMwbfAJ+amEvOAw7BPfZp5sQulNELSLm5YUkau+Sg=="
   "resolved" "https://registry.npmmirror.com/vue/-/vue-3.4.24.tgz"
   "version" "3.4.24"

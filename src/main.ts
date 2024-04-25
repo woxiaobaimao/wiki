@@ -1,17 +1,18 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/reset.css'
 import axios from 'axios'
 import JSONbig from 'json-bigint' // 导入处理大整数的库
+import { createPinia } from 'pinia'
 
 axios.defaults.baseURL = process.env.VUE_APP_SERVER
 
 const app = createApp(App)
+const pinia = createPinia()
 app.config.warnHandler = () => {} // 禁用所有警告
-app.use(Antd).use(store).use(router).mount('#app')
+app.use(Antd).use(pinia).use(router).mount('#app')
 
 axios.defaults.transformResponse = [
   function (data) {

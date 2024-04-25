@@ -6,11 +6,13 @@
 
 <script lang="ts" setup>
 import { computed, onMounted } from 'vue'
-import store from '@/store'
+import { useUserStore } from '@/store/user'
 import { Tool } from '@/util/tool'
 import { notification } from 'ant-design-vue'
 
-const user = computed(() => store.state.user)
+// 登录后保存
+const userStore = useUserStore()
+const user = computed(() => userStore.user)
 
 let websocket: any
 let token: any

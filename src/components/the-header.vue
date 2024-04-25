@@ -5,13 +5,13 @@
       <a-menu-item key="/">
         <router-link to="/">首页</router-link>
       </a-menu-item>
-      <a-menu-item key="/admin/user" :style="user.id ? {} : { display: 'none' }">
+      <a-menu-item key="/admin/user" v-if="user.id">
         <router-link to="/admin/user">用户管理</router-link>
       </a-menu-item>
-      <a-menu-item key="/admin/ebook" :style="user.id ? {} : { display: 'none' }">
+      <a-menu-item key="/admin/ebook" v-if="user.id">
         <router-link to="/admin/ebook">电子书管理</router-link>
       </a-menu-item>
-      <a-menu-item key="/admin/category" :style="user.id ? {} : { display: 'none' }">
+      <a-menu-item key="/admin/category" v-if="user.id">
         <router-link to="/admin/category">分类管理</router-link>
       </a-menu-item>
       <a-menu-item key="/about">
@@ -20,17 +20,17 @@
       <a-menu-item key="/aliyun">
         <router-link to="/aliyun">阿里云优惠</router-link>
       </a-menu-item>
-      <a-popconfirm title="确认退出登录?" ok-text="是" cancel-text="否" @confirm="logout()">
-        <a class="login-menu" v-show="user.id">
+      <!-- <a-popconfirm title="确认退出登录?" ok-text="是" cancel-text="否" @confirm="logout()">
+        <a-menu-item class="login-menu" v-if="user.id">
           <span>退出登录</span>
-        </a>
-      </a-popconfirm>
-      <a class="login-menu" v-show="user.id">
+        </a-menu-item>
+      </a-popconfirm> -->
+      <a-menu-item class="login-menu" v-if="user.id">
         <span>您好：{{ user.name }}</span>
-      </a>
-      <a class="login-menu" v-show="!user.id" @click="showLoginModal">
+      </a-menu-item>
+      <a-menu-item class="login-menu" v-if="!user.id" @click="showLoginModal">
         <span>登录</span>
-      </a>
+      </a-menu-item>
     </a-menu>
 
     <a-modal title="登录" v-model:open="loginModalVisible" :confirm-loading="loginModalLoading" @ok="login">
@@ -50,18 +50,19 @@
 import { ref, computed } from 'vue'
 import axios from 'axios'
 import { message } from 'ant-design-vue'
-import store from '@/store'
+import { useUserStore } from '@/store/user'
 
 declare let hexMd5: any
 declare let KEY: any
 
 // 登录后保存
-const user = computed(() => store.state.user)
+const userStore = useUserStore()
+const user = computed(() => userStore.user)
 
 // 用来登录
 const loginUser = ref({
-  loginName: 'test',
-  password: 'test'
+  loginName: 'zy',
+  password: '123456'
 })
 const loginModalVisible = ref(false)
 const loginModalLoading = ref(false)
@@ -71,7 +72,6 @@ const showLoginModal = () => {
 
 // 登录
 const login = () => {
-  console.log('开始登录')
   loginModalLoading.value = true
   loginUser.value.password = hexMd5(loginUser.value.password + KEY)
   axios.post('/user/login', loginUser.value).then((response) => {
@@ -79,9 +79,7 @@ const login = () => {
     const data = response.data
     if (data.success) {
       loginModalVisible.value = false
-      message.success('登录成功！')
-
-      store.commit('setUser', data.content)
+      userStore.setUser(data.content)
     } else {
       message.error(data.message)
     }
@@ -95,7 +93,7 @@ const logout = () => {
     const data = response.data
     if (data.success) {
       message.success('退出登录成功！')
-      store.commit('setUser', {})
+      userStore.removeUser()
     } else {
       message.error(data.message)
     }
