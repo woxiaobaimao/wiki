@@ -138,7 +138,7 @@ const handleQuery = (params: any) => {
       loading.value = false
       const data = response.data
       if (data.success) {
-        ebooks.value = data.content
+        ebooks.value = data.content.list
 
         // 重置分页按钮
         pagination.value.current = params.page
@@ -250,8 +250,17 @@ const handleQueryCategory = () => {
   })
 }
 
-// 根据id获取分类名称
-const getCategoryName = (cid: number) => categorys.find((item) => item.id === cid)?.name
+const getCategoryName = (cid: number) => {
+  // console.log(cid)
+  let result = ''
+  categorys.forEach((item: any) => {
+    if (item.id === cid) {
+      // return item.name; // 注意，这里直接return不起作用
+      result = item.name
+    }
+  })
+  return result
+}
 
 onMounted(() => {
   handleQueryCategory()
