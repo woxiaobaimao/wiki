@@ -4,6 +4,7 @@ import About from '../views/about.vue'
 import AdminEbook from '../views/admin/ebook.vue'
 import AdminCategory from '../views/admin/category.vue'
 import AdminUser from '../views/admin/user.vue'
+import AdminDoc from '../views/admin/doc.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -36,6 +37,14 @@ const routes: Array<RouteRecordRaw> = [
     path: '/admin/user',
     name: 'AdminUser',
     component: AdminUser,
+    meta: {
+      loginRequire: true
+    }
+  },
+  {
+    path: '/admin/doc',
+    name: 'AdminDoc',
+    component: AdminDoc,
     meta: {
       loginRequire: true
     }

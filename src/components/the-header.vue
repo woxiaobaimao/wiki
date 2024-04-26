@@ -1,6 +1,6 @@
 <template>
   <a-layout-header class="header" style="display: flex">
-    <div class="logo">甲蛙知识库</div>
+    <div class="logo">文溪知识库</div>
     <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
       <a-menu-item key="/">
         <router-link to="/">首页</router-link>
@@ -16,9 +16,6 @@
       </a-menu-item>
       <a-menu-item key="/about">
         <router-link to="/about">关于我们</router-link>
-      </a-menu-item>
-      <a-menu-item key="/aliyun">
-        <router-link to="/aliyun">阿里云优惠</router-link>
       </a-menu-item>
     </a-menu>
 
