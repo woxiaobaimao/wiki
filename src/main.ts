@@ -6,6 +6,10 @@ import 'ant-design-vue/dist/reset.css'
 import axios from 'axios'
 import JSONbig from 'json-bigint' // 导入处理大整数的库
 import { createPinia } from 'pinia'
+import { useUserStore } from '@/store/user'
+import { Tool } from '@/util/tool'
+import { computed } from 'vue'
+import { message } from 'ant-design-vue'
 
 axios.defaults.baseURL = process.env.VUE_APP_SERVER
 
@@ -27,3 +31,43 @@ axios.defaults.transformResponse = [
 ]
 console.log('环境：', process.env.NODE_ENV)
 console.log('服务端：', process.env.VUE_APP_SERVER)
+
+/**
+ * axios拦截器
+ */
+const userStore = useUserStore()
+const user = computed(() => userStore.user)
+
+axios.interceptors.request.use(
+  function (config) {
+    console.log('请求参数：', config)
+    const token = user.value.token
+    if (Tool.isNotEmpty(token)) {
+      config.headers.token = token
+      console.log('请求headers增加token:', token)
+    }
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
+axios.interceptors.response.use(
+  function (response) {
+    console.log('返回结果：', response)
+    return response
+  },
+  (error) => {
+    console.log('返回错误：', error)
+    const response = error.response
+    const status = response.status
+    if (status === 401) {
+      // 判断状态码是401 跳转到首页或登录页
+      console.log('未登录，跳到首页')
+      userStore.removeUser()
+      message.error('未登录或登录超时')
+      router.push('/')
+    }
+    return Promise.reject(error)
+  }
+)

@@ -32,7 +32,7 @@
               cancel-text="否"
               @confirm="handleDelete(record.id)"
             >
-              <a-button type="danger"> 删除 </a-button>
+              <a-button type="primary" danger> 删除 </a-button>
             </a-popconfirm>
           </a-space>
         </template>
